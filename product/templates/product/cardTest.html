@@ -1,0 +1,43 @@
+{% extends 'product/base.html' %}
+{% block content %}
+{% for product in products %}
+<div class="card">
+  <!-- <div class="card-header">
+    Title
+  </div> -->
+  <div class="card-body">
+    <div class="article-metadata">
+      <img class="rounded-circle article-img" src="{{ product.author.profile.image.url }}">
+      <a class="mr-2" href="{% url 'my-products' product.author.username %}">{{ product.author }}</a>
+      <small class="text-muted">{{ product.date_posted|date:"F d,Y" }}</small>
+    </div>
+    <br>
+    <h4 class="card-title"><a class="article-title" href="{% url 'product-detail' product.id %}">{{product.title}}</a></h4>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <p>{{product.description}}</p>
+
+        </div><!--.col -->
+
+        <div class="col-md-6 ml-auto">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src={{product.video_link}} allowfullscreen></iframe>
+        </div>
+
+        </div><!--.col -->
+
+    </div><!--./row -->
+
+</div><!--./container -->
+
+
+    <br>
+    <p>{{product.link}}</p>
+    <a class="btn btn-primary" href={{product.affiliate_link}} >Buy</a>
+    <!-- <a class="btn btn-primary stretched-link" href={{product.aff_link}} >Buy</a> -->
+  </div>
+</div>
+<br>
+{% endfor %}
+{% endblock content %}

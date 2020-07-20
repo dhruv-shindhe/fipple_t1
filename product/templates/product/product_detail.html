@@ -1,0 +1,48 @@
+{% extends 'product/base.html' %}
+{% block content %}
+<div class="card">
+  <!-- <div class="card-header">
+    Title
+  </div> -->
+  <div class="card-body">
+    <div class="article-metadata">
+      <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+      <a class="mr-2" href="#">{{ object.author }}</a>
+      <small class="text-muted">{{ object.date_posted|date:"F d,Y" }}</small>
+    </div>
+    <br>
+    <h4 class="card-title"><a class="article-title" href="#">{{object.title}}</a></h4>
+    <div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <p>{{object.description}}</p>
+
+        </div><!--.col -->
+
+        <div class="col-md-6 ml-auto">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src={{product.video_link}} allowfullscreen></iframe>
+        </div>
+
+        </div><!--.col -->
+
+    </div><!--./row -->
+
+</div><!--./container -->
+
+
+    <br>
+    <p>{{object.link}}</p>
+    <a class="btn btn-primary" href={{object.aff_link}} >Buy</a>
+    <br>
+    <hr>
+    <!-- <a class="btn btn-primary stretched-link" href={{product.aff_link}} >Buy</a> -->
+    {% if object.author == user %}
+        <a class='btn btn-danger mt-1 mb-1' href="{% url 'product-delete' object.id %}">Delete</a>
+        <a class='btn btn-secondary mt-1 mb-1' href="{% url 'product-update' object.id %}">Update</a>
+    {% endif %}
+  </div>
+</div>
+<br>
+
+{% endblock content %}
